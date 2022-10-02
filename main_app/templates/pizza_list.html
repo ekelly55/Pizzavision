@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% comment %}for head title tags and helping us with SEO{% endcomment %}
+
+{% block title %}Pizzas{% endblock %}
+
+{% block content%}
+
+<h1 class="title pt-5">Check Out This Za!</h1>
+<div class="gallery">
+  {% for pizza in pizzas %}
+  <a href="">
+    <div class="card">
+      <div class="card-image">
+        <figure class="image is-square">
+          <img src="{{pizza.image}}" alt="{{pizza.name}}" />
+        </figure>
+      </div>
+      <div class="card-header">
+        <p class="card-header-title">{{pizza.name}}</p>
+      </div>
+    </div>
+  </a>
+	{% empty %}
+  <article class="message">
+    <div class="message-header">
+      <p>No Pizzas Available</p>
+    </div>
+  </article>
+  {% endfor %}
+</div>
+{% endblock %}
+

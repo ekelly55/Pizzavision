@@ -10,8 +10,12 @@ class Home(TemplateView):
 class About(TemplateView):
     template_name = 'about.html'
 
-class Pizzas(TemplateView):
-    template_name = 'pizzas.html'
+class PizzaList(TemplateView):
+    template_name = 'pizza_list.html'
+    def get_context_data(self, **kwargs):
+        context=super().get_context_data(**kwargs)
+        context['pizzas'] = pizzas
+        return context
 
 class Pizza:
     def __init__(self, image, name, review):
@@ -21,7 +25,7 @@ class Pizza:
 
 
 pizzas = [
-    Pizza("https://i.imgur.com/WzN9pUg.png", "Ninja Turtles Cartoon" "It's really hard to judge the quality here, being a cartoon. 5/10. Nice, safe score"),
+    Pizza("https://i.imgur.com/WzN9pUg.png", "Ninja Turtles Cartoon", "It's really hard to judge the quality here, being a cartoon. 5/10. Nice, safe score"),
     Pizza("https://i.imgur.com/wVLs8kN.png", "Ninja Turles movie", "Gross. Why are these denizens of NYC eathing Domino's? 0/10"),
     Pizza("https://i.imgur.com/585Lnod.png", "Saturday Night Fever", "You only get a quick glimpse, but the pizza looks good. More importantly, you can tell by the way he eats his pizza (two slices at a time), he's a business man, no time for talk. 10/10 for pizza and technique."),
     Pizza("https://i.imgur.com/fglYdAt.png", "Back to the Future II", "It looks exactly like you would expect pizza that came out of a weird futuristic appliance to look. 5/10"),
