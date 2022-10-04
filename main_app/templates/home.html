@@ -1,4 +1,26 @@
 {% extends 'base.html' %}
 {% block content %}
 <h1>This is PizzaVision</h1>
+<p>Your home for pizza on the screen.</p>
+<div class="home__pizzaclubs">
+    {% for pizzaclub in pizzaclubs %}
+
+        <div class="pizzaclub mb-5">
+            <h3 class="title is-3 has-text-success">{{pizzaclub.club_name}}</h3>
+            <hr />
+
+            {% for character in pizzaclub.characters.all %}
+
+                <div class="character">
+                    <span>{{character.name}}</span>
+                    
+                    
+                </div>
+
+            {% endfor %}
+        </div>
+    {% empty %} 
+        <div class="pizzaclub mb-5">"There are no characters in this pizzaclub"</div>
+    {% endfor %}
+</div>
 {% endblock %}
