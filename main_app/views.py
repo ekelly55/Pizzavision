@@ -4,7 +4,7 @@ from django.views import View
 from django.http import HttpResponse
 from django.views.generic.base import TemplateView
 from .models import Pizza
-from django.views.generic.edit import CreateView, UpdateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import DetailView
 
 
@@ -46,3 +46,8 @@ class PizzaUpdate(UpdateView):
 class PizzaDetail(DetailView):
     model = Pizza
     template_name = 'pizza_detail.html'
+
+class PizzaDelete(DeleteView):
+    model = Pizza
+    template_name = 'pizza_delete_confirmation.html'
+    success_url = '/pizzas/'
