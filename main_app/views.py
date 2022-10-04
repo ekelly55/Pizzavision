@@ -4,8 +4,10 @@ from django.views import View
 from django.http import HttpResponse
 from django.views.generic.base import TemplateView
 from .models import Pizza
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView
 from django.views.generic import DetailView
+
+
 # Create your views here.
 
 class Home(TemplateView):
@@ -34,7 +36,13 @@ class PizzaCreate(CreateView):
     template_name = 'pizza_create.html'
     success_url = '/pizzas/'
 
+class PizzaUpdate(UpdateView):
+    model = Pizza
+    fields = ['image', 'name', 'review']
+    template_name = 'pizza_update.html'
+    success_url = '/pizzas/'
 
-class PizzaDetail(TemplateView):
+
+class PizzaDetail(DetailView):
     model = Pizza
     template_name = 'pizza_detail.html'
