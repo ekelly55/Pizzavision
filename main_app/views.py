@@ -1,9 +1,10 @@
 from django.shortcuts import render
+from django.shortcuts import redirect
 from django.urls import reverse
 from django.views import View
 from django.http import HttpResponse
 from django.views.generic.base import TemplateView
-from .models import Pizza
+from .models import Character, Pizza
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import DetailView
 
@@ -51,3 +52,11 @@ class PizzaDelete(DeleteView):
     model = Pizza
     template_name = 'pizza_delete_confirmation.html'
     success_url = '/pizzas/'
+
+class CharacterCreate(View):
+    def post(self, request, pk):
+        name = request.POST.get('name')
+        actor = request.POST.get('actor')
+        pizza = Pizza.objects.get(pk=pk)
+        Character.objects.create(name=name, actor=actor, pizza=pizza)
+        return redirect('pizza_detail', pk=pk)

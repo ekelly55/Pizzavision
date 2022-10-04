@@ -43,5 +43,30 @@
 
     {% endfor %}
 </div>
+<form class="mb-5" action="{% url 'character_create' pizza.pk %}" method="post">
+    {% csrf_token %}
+    <div class="field has-addons">
+        <div class="control">
+            <input
+                class="input"
+                type="text"
+                name="name"
+                placeholder="name"
+                required
+            />
+        </div>
+        <div class="control">
+            <input
+                class="input"
+                type="text"
+                name="actor"
+                placeholder="Actor"
+            />
+        </div>
+        <div class="control">
+            <input class="button is-primary" type="submit" value="Add character" />
+        </div>
+    </div>
+</form>
 <!--  above about section  -->
 {% endblock %}
