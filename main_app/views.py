@@ -40,8 +40,8 @@ class PizzaUpdate(UpdateView):
     model = Pizza
     fields = ['image', 'name', 'review']
     template_name = 'pizza_update.html'
-    success_url = '/pizzas/'
-
+    def get_success_url(self):
+        return reverse('pizza_detail', kwargs= {'pk': self.object.pk})
 
 class PizzaDetail(DetailView):
     model = Pizza
