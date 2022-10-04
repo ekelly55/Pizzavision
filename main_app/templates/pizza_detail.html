@@ -25,5 +25,23 @@
         <p>{{pizza.review}}</p>
     </div>
 </div>
+<!-- inside container -->
+<div class="detail__characters mb-5">
+    <h3 class="title is-3">characters</h3>
+        <span><b>Character </b></span><span>Actor</span>
+    {% for character in pizza.characters.all %}
+        <div class="character">
+            <span><b>{{character.name}}:</b></span>
+            <span>{{character.actor}}</span>
+        </div>
+    {% empty %}
+        <article class="message">
+            <div class="message-header">
+                <p>No characters Available</p>
+            </div>
+        </article>
 
+    {% endfor %}
+</div>
+<!--  above about section  -->
 {% endblock %}

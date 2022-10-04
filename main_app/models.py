@@ -14,3 +14,11 @@ class Pizza(models.Model):
     
     class Meta:
         ordering = ['name']
+
+class Character(models.Model):
+    name = models.CharField(max_length=150)
+    actor = models.CharField(max_length=150)
+    pizza = models.ForeignKey(Pizza, on_delete=models.CASCADE, related_name='characters')
+
+    def __str__(self):
+        return self.name
