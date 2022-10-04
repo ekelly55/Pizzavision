@@ -13,8 +13,13 @@
 
                 <div class="character">
                     <span>{{character.name}}</span>
-                    
-                    
+                    <span>
+                        <a href="{% url 'pizzaclub_character_assoc' pizzaclub.pk character.pk %}?assoc=remove" class="button is-danger is-outlined">
+                        <span class="icon is-small">
+                            <i class="fas fa-times"></i>
+                        </span>
+                        </a>
+                    </span>
                 </div>
 
             {% endfor %}

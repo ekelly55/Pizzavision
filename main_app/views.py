@@ -4,7 +4,7 @@ from django.urls import reverse
 from django.views import View
 from django.http import HttpResponse
 from django.views.generic.base import TemplateView
-from .models import Character, Pizza, PizzaClub
+from .models import Character, Pizza, Pizzaclub
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import DetailView
 
@@ -15,7 +15,7 @@ class Home(TemplateView):
     template_name = 'home.html'
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['pizzaclubs'] = PizzaClub.objects.all()
+        context['pizzaclubs'] = Pizzaclub.objects.all()
         return context
 
 class About(TemplateView):
@@ -64,3 +64,12 @@ class CharacterCreate(View):
         pizza = Pizza.objects.get(pk=pk)
         Character.objects.create(name=name, actor=actor, pizza=pizza)
         return redirect('pizza_detail', pk=pk)
+
+class PizzaclubCharacterAssoc(View):
+    def get(self, request, pk, character_pk):
+        assoc = request.GET.get('assoc')
+        if assoc == 'remove':
+            Pizzaclub.objects.get(pk=pk).characters.remove(character_pk)
+        if assoc == 'add':
+            Pizzaclub.objects.get(pk=pk).characters.add(character_pk)
+        return redirect('home')

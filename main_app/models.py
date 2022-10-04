@@ -23,7 +23,7 @@ class Character(models.Model):
     def __str__(self):
         return self.name
 
-class PizzaClub(models.Model):
+class Pizzaclub(models.Model):
     club_name = models.CharField(max_length=150)
     characters = models.ManyToManyField(Character)
     def __str__(self):
