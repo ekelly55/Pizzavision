@@ -72,4 +72,4 @@ class PizzaclubCharacterAssoc(View):
             Pizzaclub.objects.get(pk=pk).characters.remove(character_pk)
         if assoc == 'add':
             Pizzaclub.objects.get(pk=pk).characters.add(character_pk)
-        return redirect('home')
+        return redirect('/')
