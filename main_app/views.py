@@ -51,6 +51,10 @@ class PizzaUpdate(UpdateView):
 class PizzaDetail(DetailView):
     model = Pizza
     template_name = 'pizza_detail.html'
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['pizzaclubs'] = Pizzaclub.objects.all()
+        return context
 
 class PizzaDelete(DeleteView):
     model = Pizza
