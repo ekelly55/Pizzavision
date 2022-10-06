@@ -28,4 +28,11 @@
         <div class="pizzaclub mb-5">"There are no characters in this pizzaclub"</div>
     {% endfor %}
 </div>
+<form class="mb-5" action="{% url 'pizzaclub_create' %}" method="post">
+    {% csrf_token %}
+        <div class="control">
+            <input class="button is-primary" type="submit" value="Add Pizza Club" />
+        </div>
+    </div>
+</form>
 {% endblock %}

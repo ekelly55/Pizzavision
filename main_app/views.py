@@ -41,6 +41,12 @@ class PizzaCreate(CreateView):
     template_name = 'pizza_create.html'
     success_url = '/pizzas/'
 
+class PizzaclubCreate(CreateView):
+    model = Pizzaclub
+    fields = ['club_name', 'characters']
+    template_name = 'pizzaclub_create.html'
+    success_url = '/'
+    
 class PizzaUpdate(UpdateView):
     model = Pizza
     fields = ['image', 'name', 'review']
