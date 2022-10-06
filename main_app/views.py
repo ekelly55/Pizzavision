@@ -15,7 +15,11 @@ class Home(TemplateView):
     template_name = 'home.html'
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        #if Pizzaclub.objects.user != None:
+        #context['pizzaclubs'] = Pizzaclub.objects.filter(user = self.request.user)
         context['pizzaclubs'] = Pizzaclub.objects.all()
+        #else:
+            #context = "Make some Pizza Clubs"
         return context
 
 class About(TemplateView):
@@ -45,8 +49,12 @@ class PizzaclubCreate(CreateView):
     model = Pizzaclub
     fields = ['club_name', 'characters']
     template_name = 'pizzaclub_create.html'
+    # def form_valid(self, form):
+    #     form.instance.user = self.request.user
+    #     return super(PizzaclubCreate, self).form_valid(form)
+
     success_url = '/'
-    
+
 class PizzaUpdate(UpdateView):
     model = Pizza
     fields = ['image', 'name', 'review']
