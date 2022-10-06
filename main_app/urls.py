@@ -12,4 +12,5 @@ urlpatterns = [
     path('pizzas/<int:pk>/characters/new/', views.CharacterCreate.as_view(), name='character_create'),
     path('pizzaclubs/new/', views.PizzaclubCreate.as_view(), name='pizzaclub_create'),
     path('pizzaclubs/<int:pk>/characters/<int:character_pk>/', views.PizzaclubCharacterAssoc.as_view(), name='pizzaclub_character_assoc'),
+    path('accounts/signup/', views.Signup.as_view(), name='signup'),
 ] 

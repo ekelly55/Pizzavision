@@ -7,6 +7,8 @@ from django.views.generic.base import TemplateView
 from .models import Character, Pizza, Pizzaclub
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import DetailView
+from django.contrib.auth import login
+from django.contrib.auth.forms import UserCreationForm
 
 
 # Create your views here.
@@ -91,3 +93,18 @@ class PizzaclubCharacterAssoc(View):
         if assoc == 'add':
             Pizzaclub.objects.get(pk=pk).characters.add(character_pk)
         return redirect('/')
+
+class Signup(View):
+    def get(self, request):
+        form = UserCreationForm()
+        context = {'form': form}
+        return render(request, 'registration/signup.html', context)
+    def post(self, request):
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            return redirect('/')
+        else:
+            context = {'form': form}
+            return render(request, 'registration/signup.html', context)
