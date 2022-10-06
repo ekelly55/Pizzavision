@@ -34,6 +34,36 @@
             <span><b>{{character.name}}:</b></span>
             <span>{{character.actor}}</span>
         </div>
+        <span>
+            <div class="dropdown">
+              <div class="dropdown-trigger">
+                <button
+                  class="button"
+                  aria-haspopup="true"
+                  aria-controls="dropdown-menu"
+                >
+                  <span>Add to Pizza Club</span>
+                  <span class="icon is-small">
+                    <i class="fas fa-angle-down" aria-hidden="true"></i>
+                  </span>
+                </button>
+              </div>
+              <div class="dropdown-menu" id="dropdown-menu" role="menu">
+                <div class="dropdown-content">
+                  {% for pizzaclub in pizzaclubs %}
+              <!-- each pizza club becomes a drop
+              down item with the ids needed to add to the join table  -->
+                  <a
+                    href="{% url 'pizzaclub_character_assoc' pizzaclub.pk character.pk %}?assoc=add"
+                    class="dropdown-item">{{ pizzaclub.club_name }}</a>
+                    
+                  
+                  {% endfor %}
+                </div>
+              </div>
+            </div>
+          </span>
+  
     {% empty %}
         <article class="message">
             <div class="message-header">
