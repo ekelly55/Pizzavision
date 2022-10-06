@@ -20,8 +20,8 @@ class Home(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         #if Pizzaclub.objects.user != None:
-        #context['pizzaclubs'] = Pizzaclub.objects.filter(user = self.request.user)
-        context['pizzaclubs'] = Pizzaclub.objects.all()
+        context['pizzaclubs'] = Pizzaclub.objects.filter(user = self.request.user)
+        #context['pizzaclubs'] = Pizzaclub.objects.all()
         #else:
             #context = "Make some Pizza Clubs"
         return context
@@ -53,11 +53,11 @@ class PizzaCreate(CreateView):
 @method_decorator(login_required, name = 'dispatch')
 class PizzaclubCreate(CreateView):
     model = Pizzaclub
-    fields = ['club_name', 'characters']
+    fields = ['club_name', 'characters', 'user']
     template_name = 'pizzaclub_create.html'
-    # def form_valid(self, form):
-    #     form.instance.user = self.request.user
-    #     return super(PizzaclubCreate, self).form_valid(form)
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super(PizzaclubCreate, self).form_valid(form)
 
     success_url = '/'
 

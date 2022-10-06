@@ -29,6 +29,6 @@ class Character(models.Model):
 class Pizzaclub(models.Model):
     club_name = models.CharField(max_length=150)
     characters = models.ManyToManyField(Character)
-    user = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     def __str__(self):
         return self.club_name
