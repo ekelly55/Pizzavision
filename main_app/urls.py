@@ -10,6 +10,7 @@ urlpatterns = [
     path('pizzas/<int:pk>/update', views.PizzaUpdate.as_view(), name='pizza_update'),
     path('pizzas/<int:pk>/delete', views.PizzaDelete.as_view(), name='pizza_delete'),
     path('pizzas/<int:pk>/characters/new/', views.CharacterCreate.as_view(), name='character_create'),
+    path('pizzaclubs/', views.PizzaclubList.as_view(), name = 'pizzaclubs'),
     path('pizzaclubs/new/', views.PizzaclubCreate.as_view(), name='pizzaclub_create'),
     path('pizzaclubs/<int:pk>/characters/<int:character_pk>/', views.PizzaclubCharacterAssoc.as_view(), name='pizzaclub_character_assoc'),
     path('accounts/signup/', views.Signup.as_view(), name='signup'),
