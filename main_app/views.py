@@ -53,13 +53,21 @@ class PizzaCreate(CreateView):
 @method_decorator(login_required, name = 'dispatch')
 class PizzaclubCreate(CreateView):
     model = Pizzaclub
-    fields = ['club_name', 'characters', 'user']
+    fields = ['club_name', 'characters']
     template_name = 'pizzaclub_create.html'
+    success_url = '/'
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super(PizzaclubCreate, self).form_valid(form)
 
-    success_url = '/'
+class PizzaclubList(TemplateView):
+    model = Pizzaclub
+    template_name = 'pizzaclublist.html'
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['pizzaclubs'] = Pizzaclub.objects.all()
+        return context
+        
 
 @method_decorator(login_required, name = 'dispatch')
 class PizzaUpdate(UpdateView):
@@ -75,8 +83,9 @@ class PizzaDetail(DetailView):
     template_name = 'pizza_detail.html'
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['pizzaclubs'] = Pizzaclub.objects.all()
+        context['pizzaclubs'] = Pizzaclub.objects.filter(user = self.request.user)
         return context
+
 @method_decorator(login_required, name = 'dispatch')
 class PizzaDelete(DeleteView):
     model = Pizza

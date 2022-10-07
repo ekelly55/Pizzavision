@@ -6,7 +6,9 @@
 <!-- Security Feature  -->
   {% csrf_token %} 
 <!--  Generate inputs  -->
-  {{form.as_p}} 
+    {{ form.as_p }}
+<!-- <input id="pizzaclub" type="text" name="pizzaclub" value="{{ club_name }}">
+<input id="user" type="hidden" name="user" value="{{ user }}"> -->
 <!--  Submit form  -->
   <input type="submit" value="Submit" />
 </form>
