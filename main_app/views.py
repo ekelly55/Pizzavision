@@ -83,7 +83,7 @@ class PizzaDetail(DetailView):
     template_name = 'pizza_detail.html'
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['pizzaclubs'] = Pizzaclub.objects.all()
+        context['pizzaclubs'] = Pizzaclub.objects.filter(user = self.request.user)
         return context
 
 @method_decorator(login_required, name = 'dispatch')
