@@ -3,6 +3,7 @@
 <h1>This is PizzaVision</h1>
 <p>Your home for pizza on the screen.</p>
 <div class="home__pizzaclubs">
+
     {% for pizzaclub in pizzaclubs %}
 
         <div class="pizzaclub mb-5">
@@ -24,8 +25,15 @@
 
             {% endfor %}
         </div>
-    {% empty %} 
+        {% empty %} 
         <div class="pizzaclub mb-5">"There are no characters in this pizzaclub"</div>
     {% endfor %}
 </div>
+<form class="mb-5" action="{% url 'pizzaclub_create' %}" method="post">
+    {% csrf_token %}
+        <div class="control">
+            <input class="button is-primary" type="submit" value="Add Pizza Club" />
+        </div>
+    </div>
+</form>
 {% endblock %}

@@ -1,5 +1,6 @@
 
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 
@@ -8,6 +9,8 @@ class Pizza(models.Model):
     name = models.CharField(max_length=100)
     review = models.TextField(max_length=500)
     created_at=models.DateTimeField(auto_now_add=True)
+    
+
 
     def __str__(self):
         return self.name
@@ -26,5 +29,6 @@ class Character(models.Model):
 class Pizzaclub(models.Model):
     club_name = models.CharField(max_length=150)
     characters = models.ManyToManyField(Character)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     def __str__(self):
         return self.club_name
